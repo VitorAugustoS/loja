@@ -11,7 +11,12 @@
 		</div>
 		<div class="form-group col-5">
 			<label for="preco">Preço:</label>
-			<input type="text" id="preco_mask" name="preco_mask" class="form-control" value="{{ $produto->preco }}" />
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">R$</span>
+				</div>
+				<input type="text" id="preco_mask" name="preco_mask" class="form-control" value="{{ ($produto->id == '') ? '' : number_format($produto->preco, 2) }}" />
+			</div>
 			<input type="hidden" id="preco" name="preco" value="{{ $produto->preco }}" />
 		</div>
 		<div class="form-group col-2">
@@ -58,7 +63,7 @@
 			@foreach ($produtos as $produto)
 				<tr>
 					<td class="td_descricao">{{ $produto->descricao }}</td>
-					<td class="td_preco">{{ $produto->preco }}</td>
+					<td class="td_preco">{{ number_format($produto->preco, 2) }}</td>
 					<td>
 						<a href="/produto/{{ $produto->id }}/edit" class="btn btn-warning">
 							<i class="bi bi-pencil-square"></i>
@@ -109,11 +114,11 @@
 	}
 
 	function carregaDados(){
-		$("#preco").val($("#preco_mask").cleanVal());
+		$("#preco").val(parseFloat($("#preco_mask").cleanVal())/100);
 	}
 
 	document.addEventListener("DOMContentLoaded", function() {
-		$("#preco_mask").mask("#,##", {reverse: true});
+		$("#preco_mask").mask("#.##0,00", {reverse: true});
 		$(".td_preco").mask("#.##0,00", {reverse: true});
 	});
 </script>
