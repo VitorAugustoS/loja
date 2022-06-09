@@ -87,4 +87,16 @@ class VendaController extends Controller
     {
         //
     }
+	
+	public function itemVenda($id) {
+		$produtos = Produto::All();
+		return view("venda.item", [
+			"id" => $id,
+			"produtos" => $produtos
+		]);
+	}
+	
+	public function salvarItemVenda($id) {
+		return redirect("/venda/" . $id . "/item");
+	}
 }

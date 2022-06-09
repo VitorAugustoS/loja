@@ -19,12 +19,12 @@
 		<div class="col-6 form-group">
 			@csrf
 			<input type="hidden" name="id" value="{{ $venda->id }}" />
-			<button type="submit" class="btn btn-success">
+			<button type="submit" class="btn btn-success" style="margin-top: 25px;">
 				<i class="bi bi-save"></i> Salvar Venda
 			</button>
 			
 			@if ($venda->id != "")
-				<a href="/venda/{{ $venda->id }}/item" class="btn btn-primary">
+				<a id="adicionarItem" href="/venda/{{ $venda->id }}/item" class="btn btn-primary" style="margin-top: 25px;">
 					<i class="bi bi-plus-square"></i> Adicionar Item
 				</a>
 			@endif
@@ -35,3 +35,11 @@
 @section("tabela")
 
 @endsection
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		$("#adicionarItem").magnificPopup({
+			type: "ajax"
+		});
+	});
+</script>

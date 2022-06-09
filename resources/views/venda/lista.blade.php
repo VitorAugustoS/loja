@@ -45,7 +45,7 @@
 					<td>{{ $venda->cliente }}</td>
 					<td class="td_preco">{{ number_format($venda->total, 2) }}</td>
 					<td>
-						<a href="/venda/{{ $venda->id }}/edit" class="btn btn-warning">
+						<a href="/venda/{{ $venda->id }}/edit" class="btn btn-warning" style="margin-top: 25px;">
 							<i class="bi bi-pencil-square"></i> Editar
 						</a>
 					</td>

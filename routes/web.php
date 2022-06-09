@@ -15,3 +15,6 @@ Route::Resources([
 	"produto" => ProdutoController::class,
 	"venda" => VendaController::class
 ]);
+
+Route::Get("/venda/{id}/item", [VendaController::class, "itemVenda"]);
+Route::Post("/venda/{id}/item", [VendaController::class, "salvarItemVenda"]);
